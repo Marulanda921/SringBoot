@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "PrimeraWebApplication",
+            "request": "launch",
+            "mainClass": "com.riwi.PrimeraWeb.PrimeraWebApplication",
+            "projectName": "PrimeraWeb"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-HolamundoApplication<holamundo>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
