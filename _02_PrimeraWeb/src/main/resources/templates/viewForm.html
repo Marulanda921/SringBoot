@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
+
 <body>
-    <h1 class="text-center my-5">Formulario</h1>
-    <div class="container">
-        <form action="">
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="name" placeholder="nombreCoder">
-                <label for="floatingInput">Nombre Coder</label>
-              </div>
+  <h1 class="text-center my-5">Formulario</h1>
+  <div class="container">
+    <form action="" th:object="${coder}" th:action="${action}" method="post">
+      <input type="hidden" th:field="*{id}" th:value=${coder.id}>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="name" placeholder="nombreCoder" th:field="*{name}" th:value="${coder.name}">
+        <label for="floatingInput">Nombre Coder</label>
+      </div>
 
-              <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="edad" placeholder="Edad">
-                <label for="floatingInput">Edad Coder</label>
-              </div>
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control" id="edad" placeholder="Edad" th:field="*{age}" th:value="${coder.age}">
+        <label for="floatingInput">Edad Coder</label>
+      </div>
 
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="clan" placeholder="Clan">
-                <label for="floatingInput">Clan Coder</label>
-              </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="clan" placeholder="Clan" th:field="*{clan}" th:value="${coder.clan}">
+        <label for="floatingInput">Clan Coder</label>
+      </div>
 
-              <!--LINK th:href="@{estilos/styles.css}"-->
-              <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-success">Guardar</button>
-              <a href="/" class="btn btn-danger">Cancelar</a>
-            </div>
-        </form>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <!--LINK th:href="@{estilos/styles.css}"-->
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="/" class="btn btn-danger">Cancelar</a>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </body>
 </html>
