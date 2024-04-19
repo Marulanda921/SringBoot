@@ -1,11 +1,11 @@
 package com.riwi.PrimeraWeb.Controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,40 +22,21 @@ public class CoderController {
     private CoderService objCoderService;
 
     /*Metodo para mostrar la lista y enviarle la lista de coders */
-    @GetMapping
-    /*es un objeto que conecta HTML CON JAVA se importa de olg.Springboot.ui */
-    /*Conecta la vista con el codigo */
-    public String showViewGetAll(Model objModel){
-        /*llamo al servicio y guardo la lista de coders*/
-         List<Coder> list = this.objCoderService.findAll();
-
-        /*medio de transporte que comunica java con html - es el conector LLave y valor*/
-         objModel.addAttribute("coderList", list);
-
-         /*Retornamos como se va a llamar la vista*/
-        return "viewCoder";
-
-    }
 
 
 
 
     @GetMapping
-    /*es un objeto que conecta HTML CON JAVA se importa de olg.Springboot.ui */
-    /*Conecta la vista con el codigo */
-    public String showViewGetAll(Model objModel, @RequestParam (defaultValue = "1") int page , @RequestParam(defaultValue = "3")int size){
-        /*llamo al servicio y guardo la lista de coders*/
-         List<Coder> list = this.objCoderService.fingPaginated(page -1, size);
+    public String showViewGetAll(Model objModel, @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "3") int size) {
+        // LLamo el servicio y guardo la lista de coders
+        Page<Coder> list = this.objCoderService.fingPaginated(page - 1, size);
+        objModel.addAttribute("coderList", list); // Llave- valor
+        objModel.addAttribute("currentPage", page); // Llave- valor
+        objModel.addAttribute("totalPages", list.getTotalPages());// Llave- valor
 
-        /*medio de transporte que comunica java con html - es el conector LLave y valor*/
-         
-        objModel.addAttribute("coderList", list);
-         objModel.addAttribute("CurrentPage", page);
-         objModel.addAttribute("TotalPages", );
-
-         /*Retornamos como se va a llamar la vista*/
+        // Se debe retornar el nombre exacto de la vista html
         return "viewCoder";
-
     }
 
 

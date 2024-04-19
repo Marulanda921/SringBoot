@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TallerSpringApplication",
+            "request": "launch",
+            "mainClass": "com.Taller.TallerSpring.TallerSpringApplication",
+            "projectName": "TallerSpring"
+        },
+        {
+            "type": "java",
             "name": "PrimeraWebApplication",
             "request": "launch",
             "mainClass": "com.riwi.PrimeraWeb.PrimeraWebApplication",

@@ -62,11 +62,14 @@ public class CoderService {
 
     /*Metodo para paginacion o listar los coders de forma paginada */
     public Page<Coder> fingPaginated(int page, int size) {
-        if (page < 0) page = 1;
-           /*Crear objeto de paginacion */
-           Pageable objPageable = PageRequest.of(page, size);
-           return this.objCoderRepository.findAll(objPageable);
+        if (page < 0) {
+            page = 1;
+        }
 
+        // Crear objeto de paginación
+        Pageable objPageable = PageRequest.of(page, size);
+
+        return this.objCoderRepository.findAll(objPageable);
     }
 
 
