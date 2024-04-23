@@ -12,7 +12,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class productService implements IservicesAbstract  {
 
-    //el final no va a cambiar
+    //el final no va a cambiar es bueno para añadir la inyeccion de dependencias
+    //al darle valor tenemos que darle un constructor a la inyeccion de dependecias
     @Autowired
     private final ProdutRepository objProdutRepository;
 
@@ -20,8 +21,7 @@ public class productService implements IservicesAbstract  {
 
     @Override
     public Product save(Product product) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        return this.objProdutRepository.save(product);
     }
 
     @Override
@@ -31,25 +31,28 @@ public class productService implements IservicesAbstract  {
 
     @Override
     public Product findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        //validamos que tenga el valor, el trow rompe todo el programa al no encontrar un valor de id
+        return this.objProdutRepository.findById(id).orElseThrow();
     }
 
     @Override
-    public boolean delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    public void delete(Long id) {
+        Product productFind = this.objProdutRepository.findById(id).orElseThrow();
+        this.objProdutRepository.delete(productFind);
+
     }
 
     @Override
-    public Product update(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public Product update(Long id, Product objProduct) {
+       this.objProdutRepository.findById(id).orElseThrow();
+        objProduct.setId(id);
+
+        //si no existe la creas y si existe la actualizas
+        return this.objProdutRepository.save(objProduct);
     }
 
     @Override
     public List<Product> search(String name) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'search'");
     }
 
